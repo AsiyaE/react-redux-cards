@@ -5,6 +5,7 @@ import cx from 'classnames'
 
 import styles from './Card.module.scss';
 
+
 const Card = ({ id}) => {
   const dispatch = useDispatch();
   const card = useSelector((state) => state.cardList.items.find(item => item.id === id))
@@ -32,6 +33,7 @@ const Card = ({ id}) => {
       </svg>
 
       <img className={styles.image} src={card.imgUrl} alt="dog" />
+      <span className={styles.character}>{card.name}</span>
 
       <div className={styles.functions}>
         <button 

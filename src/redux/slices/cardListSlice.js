@@ -9,10 +9,11 @@ const cardListSlice = createSlice({
   name: 'cardList',
   initialState,
   reducers: {
-    addItems(state, action) {
-      state.items = action.payload.map((item, i) => ({
-        id: i,
-        imgUrl: item,
+    addItems(state, action) { 
+      state.items = action.payload.map((item) => ({
+        id: item.id,
+        imgUrl: item.image,
+        name: item.name,
         liked: false,
       }));
     },
