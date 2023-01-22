@@ -15,12 +15,13 @@ body {
 
 .wrapper{
 	width: calc(100vw - 100px);
-	height: 100%;
-	background-color: $yellow;
-	margin: 50px auto;
-	border-radius: 10px;
 	max-width: 1400px;
+	height: 100%;
+	margin: 50px auto;
 	padding-bottom: 30px;
+	border-radius: 10px;
+
+	background-color: $yellow;
 }
 
 h1{

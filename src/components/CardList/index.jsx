@@ -14,15 +14,13 @@ const CardList = () => {
   const dispatch = useDispatch()
 
   const [isLoading, setIsLoading] = useState(true);
-  const cardsNumber = 10;
 
   useEffect(()=> {
     setIsLoading(true);
-    fetch(`https://shibe.online/api/shibes?count=${cardsNumber}&urls=true`
-    )
+    fetch(`https://rickandmortyapi.com/api/character`)
     .then((res) => res.json())
-    .then((arr) => {
-      dispatch(addItems(arr))
+    .then((obj) => {
+      dispatch(addItems(obj.results))
       setIsLoading(false);
     }); 
 
@@ -40,7 +38,7 @@ const CardList = () => {
       <div className={styles.filter}>
         <Favourites />
       </div>
-      <h1 className={styles.title}>Сиба-кэн</h1>
+      <h1 className={styles.title}>Rick and Morty</h1>
       <div className={styles.items}>
       { isLoading ? skeletons
         : cards

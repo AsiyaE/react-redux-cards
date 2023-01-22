@@ -9,15 +9,16 @@
 	gap:10px;
 	align-items: center;
 	padding: 4px 16px;
-
 	border:3px solid $orange;
 	border-radius: 20px;
+	
 	background-color: $orange;
+	color:white;
+	opacity: 70%;
 
 	font-size: 16px;
-	color:white;
 	text-transform:uppercase;
-	opacity: 70%;
+
 	cursor: pointer;
 	transition: opacity 0.15s ease-in-out;
 
