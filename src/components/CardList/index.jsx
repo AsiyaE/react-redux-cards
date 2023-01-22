@@ -4,20 +4,21 @@ import { addItems } from '../../redux/slices/cardListSlice'
 
 import Card from '../Card/index'
 import Favourites from '../Favourites/index'
+import Skeleton from '../Card/Skeleton';
 
 import styles from './CardList.module.scss'
 
 
 const CardList = () => {
-  const items = useSelector((state) => state.cardList.items)
+  const { items, filterStatus } = useSelector((state) => state.cardList)
   const dispatch = useDispatch()
 
-  const [isLoading, setIsLoading] = useState(true); // для Skeleton
-
+  const [isLoading, setIsLoading] = useState(true);
+  const cardsNumber = 10;
 
   useEffect(()=> {
     setIsLoading(true);
-    fetch(`https://shibe.online/api/shibes?count=3&urls=true`
+    fetch(`https://shibe.online/api/shibes?count=${cardsNumber}&urls=true`
     )
     .then((res) => res.json())
     .then((arr) => {
@@ -27,8 +28,10 @@ const CardList = () => {
 
     window.scrollTo(0,0);
   }, [])
-  
-  const cards = items.map((card) => 
+
+  const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+  const visibleCards = filterStatus ? items.filter(card => card.liked === true): items;
+  const cards = visibleCards.map((card) =>
     <Card key = {card.id} id={card.id} />
   )
 
@@ -37,9 +40,11 @@ const CardList = () => {
       <div className={styles.filter}>
         <Favourites />
       </div>
-      {/* <h2 className={styles.title}>Все собакены</h2> */}
+      <h1 className={styles.title}>Сиба-кэн</h1>
       <div className={styles.items}>
-        {cards}
+      { isLoading ? skeletons
+        : cards
+      }
       </div>
     </div>
   );

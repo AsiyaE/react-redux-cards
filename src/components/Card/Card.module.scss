@@ -18,6 +18,7 @@
 
 .clearIcon{
 	align-self: flex-end;
+	margin: 6px 4px 10px;
 	cursor:pointer;
 	opacity: 50%;
 	transition: all 0.15s ease-in-out;
@@ -36,19 +37,18 @@
 	height: 220px;
 	object-fit: cover;
 	align-self: center;
-	margin-bottom: 20px;
+	margin-bottom: auto;
 }
 
 .functions{
-	margin-top: auto;
 	display: flex;
 	margin-left: 10px;
 }
 
-button{
+.button{
 	border:none;
 	background-color:transparent;
-	opacity: 60%;
+	opacity: 50%;
 	
 	cursor: pointer;
 	transition: opacity $duration ease-in-out;
@@ -64,9 +64,10 @@ button{
 	&:active {
 		opacity: 100%;
 	}
-	
+
 	&.liked {
-		background-color: #111;
 		opacity: 100%;
 	}
+
 }
+

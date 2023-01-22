@@ -1,34 +1,38 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	items: []
-}
+  items: [],
+  filterStatus: false,
+};
 
 const cardListSlice = createSlice({
-	name: 'cardList',
-	initialState,
-	reducers: {
-	  addItems(state, action) { //array of imgUrl
-		state.items = action.payload.map((item,i) => {
-			return {
-				id: i,
-				imgUrl: item,
-				liked: false,
-			}
-		})
-	  },
+  name: 'cardList',
+  initialState,
+  reducers: {
+    addItems(state, action) {
+      state.items = action.payload.map((item, i) => ({
+        id: i,
+        imgUrl: item,
+        liked: false,
+      }));
+    },
 
-	  removeItem(state, action) { //id
-		state.items = state.items.filter(obj => obj.id !== action.payload);
-	  },
+    removeItem(state, action) {
+      state.items = state.items.filter((obj) => obj.id !== action.payload);
+    },
 
-	  setLikeStatus(state, action) { //id
-		const id = action.payload;
-		state.items[id].liked = !state.items[id].liked;
-	  }
-	},
-  });
-  
-export const { addItems, removeItem, setLikeStatus } = cardListSlice.actions
+    setLikeStatus(state, action) { 
+      const id = action.payload;
+      const likeElementIndex = state.items.findIndex(item => item.id === id);
+      state.items[likeElementIndex].liked = !state.items[likeElementIndex].liked;
+    },
 
-export default cardListSlice.reducer
+    setFilterStatus(state) {
+      state.filterStatus = !state.filterStatus;
+    },
+  },
+});
+
+export const { addItems, removeItem, setLikeStatus, setFilterStatus } = cardListSlice.actions;
+
+export default cardListSlice.reducer;
