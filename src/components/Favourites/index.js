@@ -1,12 +1,23 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { setFilterStatus } from '../../redux/slices/cardListSlice'
 
 import styles from './Favourites.module.scss';
+import cx from 'classnames'
 
-const Favourites = ({ value, onChangeCategory }) => {
+
+const Favourites = () => {
+  const filterStatus = useSelector((state) => state.cardList.filterStatus)
+  const dispatch = useDispatch()
+  const filterStyle = filterStatus ? styles.active : '';
+  
   return (
     <div className={styles.container}>
-      <button className={styles.button}>
-        <svg type='button'
+      <button
+      onMouseDown={() => dispatch(setFilterStatus())}
+      className={cx(styles.button, filterStyle)}
+      >
+        <svg
           width="48"
           height="48"
           version="1.1" 

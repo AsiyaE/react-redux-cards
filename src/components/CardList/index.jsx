@@ -9,15 +9,15 @@ import styles from './CardList.module.scss'
 
 
 const CardList = () => {
-  const items = useSelector((state) => state.cardList.items)
+  const { items, filterStatus } = useSelector((state) => state.cardList)
   const dispatch = useDispatch()
 
   const [isLoading, setIsLoading] = useState(true); // для Skeleton
-
+  const cardsNumber = 5;
 
   useEffect(()=> {
     setIsLoading(true);
-    fetch(`https://shibe.online/api/shibes?count=3&urls=true`
+    fetch(`https://shibe.online/api/shibes?count=${cardsNumber}&urls=true`
     )
     .then((res) => res.json())
     .then((arr) => {
@@ -27,8 +27,9 @@ const CardList = () => {
 
     window.scrollTo(0,0);
   }, [])
-  
-  const cards = items.map((card) => 
+
+  const visibleCards = filterStatus ? items.filter(card => card.liked === true): items;
+  const cards = visibleCards.map((card) => 
     <Card key = {card.id} id={card.id} />
   )
 
@@ -37,7 +38,7 @@ const CardList = () => {
       <div className={styles.filter}>
         <Favourites />
       </div>
-      {/* <h2 className={styles.title}>Все собакены</h2> */}
+      <h1 className={styles.title}>Cобакены</h1>
       <div className={styles.items}>
         {cards}
       </div>
