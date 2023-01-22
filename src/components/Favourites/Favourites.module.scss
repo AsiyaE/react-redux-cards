@@ -17,7 +17,7 @@
 	font-size: 16px;
 	color:white;
 	text-transform:uppercase;
-	opacity: 0.8;
+	opacity: 70%;
 	cursor: pointer;
 	transition: opacity 0.15s ease-in-out;
 
@@ -33,13 +33,13 @@
 	}
 
 	&:hover {
-		opacity: 100%;
+		opacity: 90%;
 	}
   
 	&:active {
 		opacity: 100%;
 	}
 	&.active{
-		opacity: 100%;
+		opacity: 90%;
 	}
 }

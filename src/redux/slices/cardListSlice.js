@@ -21,9 +21,10 @@ const cardListSlice = createSlice({
       state.items = state.items.filter((obj) => obj.id !== action.payload);
     },
 
-    setLikeStatus(state, action) {
+    setLikeStatus(state, action) { 
       const id = action.payload;
-      state.items[id].liked = !state.items[id].liked;
+      const likeElementIndex = state.items.findIndex(item => item.id === id);
+      state.items[likeElementIndex].liked = !state.items[likeElementIndex].liked;
     },
 
     setFilterStatus(state) {
