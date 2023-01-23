@@ -14,9 +14,8 @@ const Favourites = () => {
   return (
     <div className={styles.container}>
       <button
-      onMouseDown={() => dispatch(setFilterStatus())}
-      onMouseUp={() => dispatch(setFilterStatus())}
-      className={cx(styles.button, filterStyle)}
+        onClick = {() => dispatch(setFilterStatus())}
+        className={cx(styles.button, filterStyle)}
       >
         <svg
           width="48"
