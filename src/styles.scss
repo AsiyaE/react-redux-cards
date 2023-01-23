@@ -16,13 +16,20 @@ body {
 .wrapper{
 	width: calc(100vw - 100px);
 	max-width: 1400px;
+	min-width: 320px;
 	height: 100%;
 	margin: 50px auto;
 	padding-bottom: 30px;
 	border-radius: 10px;
 
 	background-color: $yellow;
+
+	@media (max-width: 645px){
+		width: calc(100vw - 30px);
+		margin-top: 15px;
+	}
 }
+
 
 h1{
 	font-weight: 600;
